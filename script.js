@@ -1,30 +1,76 @@
-const noteTextArea = document.getElementById('note');
-const savePdfButton = document.getElementById('save-pdf');
-const saveWordButton = document.getElementById('save-word');
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-savePdfButton.addEventListener('click', () => {
-    try {
-        const noteText = noteTextArea.value;
-        const docDefinition = {
-            content: noteText,
-        };
-        pdfMake.createPdf(docDefinition).download('note.pdf');
-        console.log('PDF saved successfully');
-    } catch (error) {
-        console.error('Error saving PDF:', error);
-    }
-});
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-saveWordButton.addEventListener('click', () => {
-    try {
-        const noteText = noteTextArea.value;
-        const blob = new Blob([noteText], { type: 'application/msword' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'note.doc';
-        link.click();
-        console.log('Word document saved successfully');
-    } catch (error) {
-        console.error('Error saving Word document:', error);
+textarea {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 10px;
     }
-});
+
+    textarea {
+        height: 200px;
+    }
+
+    button {
+        padding: 10px;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 10px auto;
+        padding: 5px;
+    }
+
+    textarea {
+        height: 150px;
+    }
+
+    button {
+        padding: 5px;
+        margin: 2px;
+    }
+}
